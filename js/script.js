@@ -26,8 +26,8 @@ const quotes = [
 	{
 		quote: 'qoute 4',
 		source: 'person 4',
-		citation: '',
-		year: ''
+		citation: 'place 4',
+		year: '2019'
 	},
 	{
 		quote: 'quote 5',
@@ -41,12 +41,18 @@ const quotes = [
 const quoteBox = document.getElementById('quote-box');
 const loadQuote = document.getElementById('loadQuote');
 
+let randomNum, prev;
+
 // getRandomQuote generate a random number and returns the quote object at that index
 function getRandomQuote(){
-	// Generate a random number between 0 and 4
-	const randomNum = Math.floor(Math.random() * 5);
+	// Generate a random number between 0 and 4, while ensuring that we don't repeat the same number twice in a row
+	do {
+		randomNum = Math.floor(Math.random() * 5);
+	} while (prev === randomNum);
+	// Set prev to randomNum in preparation for next call
+	prev = randomNum;
 	// Return a quote at that index
-	return quotes[randomNum]
+	return quotes[randomNum];
 }
 
 // generateQuoteHTML returns an html string containing a quote, source, and possibly citation and year
@@ -56,7 +62,10 @@ function generateQuoteHTML(){
 	// Note: I'm using string interpolation, so the ternary operators are included in the string, rather than using if statements
 	return `
 		<p class="quote">${quote.quote}</p>
-		<p class="source">${quote.source}<span class="citation">${quote.citation ? quote.citation : ''}</span><span class="year">${quote.year ? quote.year : ''}</span></p>
+		<p class="source">${quote.source}
+		<span class="citation">${quote.citation ? ', ' + quote.citation : ''}</span>
+		<span class="year">${quote.year ? ', ' + quote.year : ''}</span>
+		</p>
 	`;
 }
 
