@@ -14,8 +14,40 @@ project 1 - A Random Quote Generator
   Add the `year` property to at least one object in the array.
   Use console.log() to log your array of quotes to the console.
 ***/
+const quotes = [
+	{
+		quote: 'quote 1',
+		source: 'person 1',
+		citation: '',
+		year: ''
+	},
+	{
+		quote: 'quote 2',
+		source: 'person 2',
+		citation: '',
+		year: ''
+	},
+	{
+		quote: 'quote 3',
+		source: 'person 3',
+		citation: '',
+		year: ''
+	},
+	{
+		quote: 'qoute 4',
+		source: 'person 4',
+		citation: '',
+		year: ''
+	},
+	{
+		quote: 'quote 5',
+		source: 'person 5',
+		citation: '',
+		year: ''
+	}
+];
 
-
+console.log(quotes);
 
 
 /***
