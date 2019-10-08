@@ -3,17 +3,7 @@ Treehouse FSJS Techdegree:
 project 1 - A Random Quote Generator
 ******************************************/
 
-// Study guide for this project - https://drive.google.com/file/d/1s5grutGuQFwJcQP8bFwEI69Q8FCkGdDk/view?usp=sharing
-
-
-/*** 
-  Create the array of quote objects and name it `quotes`.
-  Add at least five quote objects to the `quotes` array.
-  Give each quote object a `quote` and `source` property.
-  Add the `citation` property to at least one object in the array.
-  Add the `year` property to at least one object in the array.
-  Use console.log() to log your array of quotes to the console.
-***/
+// Quotes array
 const quotes = [
 	{
 		quote: 'quote 1',
@@ -47,42 +37,37 @@ const quotes = [
 	}
 ];
 
-console.log(quotes);
+// Getting references to needed DOM elements
+const quoteBox = document.getElementById('quote-box');
+const loadQuote = document.getElementById('loadQuote');
 
+// getRandomQuote generate a random number and returns the quote object at that index
+function getRandomQuote(){
+	// Generate a random number between 0 and 4
+	const randomNum = Math.floor(Math.random() * 5);
+	// Return a quote at that index
+	return quotes[randomNum]
+}
 
-/***
-  Create the `getRandomQuote` function to:
-   - Create a variable to store a random number 
-   - Cse the random number to `return` a random quote object from the `quotes` array.
-***/
+// generateQuoteHTML returns an html string containing a quote, source, and possibly citation and year
+// Note: I've separated the process of building the html from the process of adding it to the DOM, so rather than creating an html variable, I'm returning the html string.
+function generateQuoteHTML(){
+	const quote = getRandomQuote();
+	// Note: I'm using string interpolation, so the ternary operators are included in the string, rather than using if statements
+	return `
+		<p class="quote">${quote.quote}</p>
+		<p class="source">${quote.source}<span class="citation">${quote.citation ? quote.citation : ''}</span><span class="year">${quote.year ? quote.year : ''}</span></p>
+	`;
+}
 
+// printQuote adds the generated html to the quote box, replacing its previous contents
+function printQuote(){
+	// Note: Setting text content with innHTML is not recommended. It's preferable to get a reference to each paragraph or span and set its textContent
+	quoteBox.innerHTML = generateQuoteHTML();
+}
 
+// Add a click listener to the loadQuote button, and on click, call printQuote
+loadQuote.addEventListener("click", printQuote, false);
 
-
-/***
-  Create the `printQuote` function to: 
-   - Call the `getRandomQuote` function and assign it to a variable.
-   - Create a variable for the HTML string and set it equal to an empty string.
-   - Use the HTML template in the instructions or the markup in the index.html file, AND 
-     the random quote vairable to build your HTML string.
-   - Add the quote and source section to the HTML string.
-   - Use an if statement to check for the citation property before adding it to the HTML string.
-   - Use an if statement to check for the year property before adding it to the HTML string.
-   - Don't forget to close that final `p` tag.
-   - Set the `innerHTML` of the `quote-box` div to the HTML string. 
-***/
-
-
-
-
-/***
-  When the "Show another quote" button is clicked, the event listener 
-  below will be triggered, and it will call, or "invoke", the `printQuote` 
-  function. So do not make any changes to the line of code below this 
-  comment.
-***/
-
-document.getElementById('loadQuote').addEventListener("click", printQuote, false);
-
-
-// Remember to delete the comments that came with this file, and replace them with your own code comments.
+// Add a listener to the document and load the first quote on load
+document.addEventListener("DOMContentLoaded", printQuote, false);
