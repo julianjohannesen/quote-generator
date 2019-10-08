@@ -6,34 +6,34 @@ project 1 - A Random Quote Generator
 // Quotes array
 const quotes = [
 	{
-		quote: 'quote 1',
-		source: 'person 1',
-		citation: '',
-		year: ''
+		quote: 'I may not have gone where I intended to go, but I think I have ended up where I needed to be.',
+		source: 'Douglas Adams',
+		citation: 'The Long Dark Tea-Time of the Soul',
+		year: '1988'
 	},
 	{
-		quote: 'quote 2',
-		source: 'person 2',
-		citation: '',
-		year: ''
+		quote: 'I love deadlines. I love the whooshing noise they make as they go by',
+		source: 'Douglas Adams',
+		citation: 'The Salmon of Doubt',
+		year: '2002'
 	},
 	{
-		quote: 'quote 3',
-		source: 'person 3',
-		citation: '',
-		year: ''
+		quote: 'The story so far: In the beginning the Universe was created. This has made a lot of people very angry and been widely regarded as a bad move.',
+		source: 'Douglas Adams',
+		citation: 'The Restaurant at the End of the Universe',
+		year: '1980'
 	},
 	{
-		quote: 'qoute 4',
-		source: 'person 4',
-		citation: 'place 4',
-		year: '2019'
+		quote: 'Let\'s think the unthinkable, let\'s do the undoable. Let us prepare to grapple with the ineffable itself, and see if we may not eff it after all.',
+		source: 'Douglas Adams',
+		citation: 'Dirk Gentley\'s Holistic Detective Agency',
+		year: '1987'
 	},
 	{
-		quote: 'quote 5',
-		source: 'person 5',
-		citation: '',
-		year: ''
+		quote: 'For a moment, nothing happened. Then, after a second or so, nothing continued to happen.',
+		source: 'Douglas Adams',
+		citation: 'The Hitchhiker\'s Guide to the Galaxy',
+		year: '1979'
 	}
 ];
 
