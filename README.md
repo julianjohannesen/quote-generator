@@ -1,7 +1,7 @@
 # Random Quote Generator
 
 ## What is this?
-Random quote generator returns one of a predefined array of quotes on document load and subsequently whenever the user clicks the "Show another quote" button.
+Your Daily Dose of Douglas is a simple Douglas Adams quote generator. It returns one of a predefined array of quotes on document load and subsequently whenever the user clicks the "DON'T PANIC" button.
 
 ## Use
 The project is deployed here:
