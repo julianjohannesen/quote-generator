@@ -97,7 +97,7 @@ function printQuote(){
 	const generatedQuote = generateQuoteHTML();
 
 	// Animation duration
-	let duration = 3500;
+	let duration = 400;
 
 	// Fade out the previous quote 
 	fade(quoteBox, 1, 0, duration, time); 
@@ -107,7 +107,7 @@ function printQuote(){
 		insertHTML();
 		// Fade in the new quote
 		fade(quoteBox, 0, 1, duration, time);
-	}, duration + 500);
+	}, duration - 10);
 
 	// insertHTML replaces quoteBox's innerHTML with the innerHTML of the new quote
 	function insertHTML() {
