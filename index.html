@@ -1,20 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Random Quotes</title>
+  <meta name="description" content="A random quote generator displaying a selection of quotes from the great Douglas Adams">
+  <title>Your Daily Dose of Douglas</title>
 
-  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400italic,700,700italic" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/styles.css">
+  <!--
+    I'm using @font-face with a locally stored copy of playfair-display. That's a couple less requests. It cut my first contentful paint from 1.4 to 0.8!
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+
+    This isn't necessary for this project and it just slows things down. An unneccessary request.
+    <link rel="stylesheet" href="css/normalize.css">
+    
+    In addition there's very little css in this project. Faster to load it here and reduce one request.
+    <link rel="stylesheet" href="css/styles.css">
+  -->
+  
+  <style>
+
+    @font-face {
+      font-family: "Playfair Display";
+      src: local("assets/playfair-display/PlayfairDisplay-Italic.otf") format("otf");
+      font-weight: normal;
+      font-style: normal;
+      font-display: block;
+    }
+
+    body {
+      color: white;
+      font-family: 'Playfair Display', georgia, serif;
+      background: 60% 30% no-repeat url('../assets/dont-panic.webp');
+      background-color: black;
+
+    }
+
+    #quote-box {
+      position: absolute;
+      top: 20%;
+      left: 10%;
+      right: 10%;
+      width: 80%;
+      line-height: .5;
+      opacity: 1;
+    }
+
+    .quote {
+      font-size: 2.5rem;
+      font-weight: 400;
+      line-height: 1.1;
+      position: relative;
+      margin: 0;
+    }
+
+    .quote:before,
+    .quote:after {
+      font-size: 3rem;
+      line-height: 2.5rem;
+      position: absolute;
+    }
+
+    .quote:before {
+      content: "“";
+      top: .25em;
+      left: -.5em;
+    }
+
+    .quote:after {
+      content: "”";
+      bottom: -.1em;
+      margin-left: .1em;
+      position: absolute;
+    }
+
+    .source {
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      line-height: 1.1;
+      text-align: right;
+      margin-right: 4em;
+    }
+
+    .source:before {
+      content: "—";
+    }
+
+    .citation {
+      font-style: italic;
+    }
+
+    #loadQuote {
+      font-size: 1.25rem;
+      position: fixed;
+      width: 12em;
+      display: inline-block;
+      left: 50%;
+      margin-left: -6em;
+      bottom: 150px;
+      border-radius: 4px;
+      border: 2px solid #fff;
+      color: #fff;
+      /* The original background color didn't provide enough contrast for AAA #36b55c */
+      background-color: #087529;
+      padding: 15px 0;
+      transition: .5s;
+    }
+
+    #loadQuote:hover {
+      background-color: rgba(255, 255, 255, .25);
+    }
+
+    @media (min-width: 420px) {
+      .quote {
+        font-size: 4rem;
+      }
+
+      .quote:before,
+      .quote:after {
+        font-size: 6rem;
+      }
+
+      .source {
+        font-size: 1.25rem;
+      }
+
+      #loadQuote {
+        font-size: 2rem;
+      }
+    }
+  </style>
 </head>
+
 <body>
   <div class="container">
 
-    <div id="quote-box" >
+    <div id="quote-box">
       <!-- First quote will load on document load -->
-      
+
     </div>
 
     <button id="loadQuote">Show another quote</button>
@@ -22,4 +145,5 @@
   </div>
   <script src="js/script.js"></script>
 </body>
+
 </html>

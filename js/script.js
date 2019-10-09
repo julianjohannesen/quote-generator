@@ -111,8 +111,3 @@ function printQuote(){
 	}	
 }
 
-// what's happening now is that :
-// click to button
-// current quote immediately dissappears
-// current quote then immediately begins to fade in
-// after set timeout new quote immediately appears
