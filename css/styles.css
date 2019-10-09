@@ -7,6 +7,7 @@ body {
   background-color: #36b55c;
   color: white;
   font-family: 'Playfair Display', serif;
+
 }
 
 #quote-box {
@@ -16,6 +17,7 @@ body {
   right: 10%;
   width: 80%;
   line-height: .5;
+  opacity: 1;
 }
 
 .quote {
@@ -92,6 +94,12 @@ body {
 #loadQuote:focus {
   outline: none;
 }
+
+/* Fade quotes in and out */
+.fade {
+ 
+}
+
 
 @media (min-width: 420px) {
   .quote {

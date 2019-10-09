@@ -41,18 +41,18 @@ const quotes = [
 const quoteBox = document.getElementById('quote-box');
 const loadQuote = document.getElementById('loadQuote');
 
-let randomNum, prev;
+let randomIndex, prevIndex;
 
 // getRandomQuote generate a random number and returns the quote object at that index
 function getRandomQuote(){
 	// Generate a random number between 0 and 4, while ensuring that we don't repeat the same number twice in a row
 	do {
-		randomNum = Math.floor(Math.random() * 5);
-	} while (prev === randomNum);
-	// Set prev to randomNum in preparation for next call
-	prev = randomNum;
+		randomIndex = Math.floor(Math.random() * 5);
+	} while (prevIndex === randomIndex);
+	// Set prevIndex to randomIndex in preparation for next call
+	prevIndex = randomIndex;
 	// Return a quote at that index
-	return quotes[randomNum];
+	return quotes[randomIndex];
 }
 
 // generateQuoteHTML returns an html string containing a quote, source, and possibly citation and year
@@ -69,10 +69,35 @@ function generateQuoteHTML(){
 	`;
 }
 
-// printQuote adds the generated html to the quote box, replacing its previous contents
+// fade uses the web animation API to transition an element from a beginning opacity to an end opacity over a given length of time
+function fade(elem, begin, end, duration){
+	elem.animate([
+		{opacity: begin},
+		{opacity: end}
+	], {
+		duration: duration
+	});
+	return elem.style.opacity;
+}
+
+
+// printQuote adds the generated html to the quote box, replacing its prevIndexious contents
 function printQuote(){
-	// Note: Setting text content with innHTML is not recommended. It's preferable to get a reference to each paragraph or span and set its textContent
-	quoteBox.innerHTML = generateQuoteHTML();
+
+	let duration = 5000;
+
+	let fadePromise = new Promise( (resolve, reject) => {
+		resolve( () => fade(quoteBox, 1, 0, duration) )
+	})
+	
+	fadePromise.then( () => insertHTML() )
+		.then(() => fade(quoteBox, 0, 1, duration) )
+		.catch( (error) => console.log("There was an error", error));
+
+	function insertHTML() {
+		// Note: Setting text content with innHTML is not recommended. It's preferable to get a reference to each paragraph or span and set its textContent
+		quoteBox.innerHTML = generateQuoteHTML();
+	}	
 }
 
 // Add a click listener to the loadQuote button, and on click, call printQuote
@@ -80,3 +105,4 @@ loadQuote.addEventListener("click", printQuote, false);
 
 // Add a listener to the document and load the first quote on load
 document.addEventListener("DOMContentLoaded", printQuote, false);
+
