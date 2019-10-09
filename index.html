@@ -17,6 +17,8 @@
     In addition there's very little css in this project. Faster to load it here and reduce one request.
     <link rel="stylesheet" href="css/styles.css">
   -->
+
+  <link rel="stylesheet" type="text/css" href="css/stars.css" />
   
   <style>
 
@@ -31,7 +33,7 @@
     body {
       color: white;
       font-family: 'Playfair Display', georgia, serif;
-      background: 60% 30% no-repeat url('https://raw.githubusercontent.com/julianjohannesen/quote-generator/master/assets/dont-panic.webp');
+      
       background-color: black;
 
     }
@@ -44,6 +46,18 @@
       width: 80%;
       line-height: .5;
       opacity: 1;
+      /* This is to help the white text stand out against the green dude a bit */
+      text-shadow: 1px 1px 3px black;
+      background-color:rgba(0, 0, 0, .25);
+      box-shadow: 2px 2px 200px 200px rgba(0, 0, 0, 0.25);
+    }
+
+    #dont-panic {
+      display: block;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      background: no-repeat url('https://raw.githubusercontent.com/julianjohannesen/quote-generator/master/assets/dont-panic.webp');
     }
 
     .quote {
@@ -52,6 +66,7 @@
       line-height: 1.1;
       position: relative;
       margin: 0;
+      
     }
 
     .quote:before,
@@ -133,8 +148,9 @@
 </head>
 
 <body>
+  <div class="stars"></div>
   <div class="container">
-
+    <div id="dont-panic"></div>
     <div id="quote-box">
       <!-- First quote will load on document load -->
 
