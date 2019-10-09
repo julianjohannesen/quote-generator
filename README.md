@@ -13,3 +13,7 @@ Download and unzip the files in your prefered directory. From your browser, open
 ## Issues
 
 Issues can logged here: https://github.com/julianjohannesen/quote-generator/issues
+
+### KNOWN ISSUES
+
+Please note that this page will not display correctly in Microsoft Edge or Safari. It relies on the Web Animation API, which is not completely supported in those browsers.
