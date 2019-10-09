@@ -40,8 +40,15 @@ const quotes = [
 // Getting references to needed DOM elements
 const quoteBox = document.getElementById('quote-box');
 const loadQuote = document.getElementById('loadQuote');
-
+// Store indecises
 let randomIndex, prevIndex;
+
+// Add a listener to the document and load the first quote on load
+document.addEventListener("DOMContentLoaded", printQuote, false);
+
+// Add a click listener to the loadQuote button, and on click, call printQuote
+loadQuote.addEventListener("click", printQuote, false);
+
 
 // getRandomQuote generate a random number and returns the quote object at that index
 function getRandomQuote(){
@@ -51,7 +58,7 @@ function getRandomQuote(){
 	} while (prevIndex === randomIndex);
 	// Set prevIndex to randomIndex in preparation for next call
 	prevIndex = randomIndex;
-	// Return a quote at that index
+	// Return a quote at randomIndex
 	return quotes[randomIndex];
 }
 
@@ -70,39 +77,47 @@ function generateQuoteHTML(){
 }
 
 // fade uses the web animation API to transition an element from a beginning opacity to an end opacity over a given length of time
-function fade(elem, begin, end, duration){
+function fade(elem, begin, end, duration, time){
+	console.log('fade starts at: ', Date.now() - time, 'and the starting opacity is: ', begin)
 	elem.animate([
 		{opacity: begin},
 		{opacity: end}
 	], {
 		duration: duration
 	});
-	return elem.style.opacity;
 }
 
 
-// printQuote adds the generated html to the quote box, replacing its prevIndexious contents
+// printQuote adds the generated html to the quote box, replacing its prev contents
 function printQuote(){
+	let time = Date.now()
+	console.log('button fires at: ', Date.now() - time)
 
-	let duration = 5000;
+	// Generate quote when the user clicks the button
+	const generatedQuote = generateQuoteHTML();
 
-	let fadePromise = new Promise( (resolve, reject) => {
-		resolve( () => fade(quoteBox, 1, 0, duration) )
-	})
-	
-	fadePromise.then( () => insertHTML() )
-		.then(() => fade(quoteBox, 0, 1, duration) )
-		.catch( (error) => console.log("There was an error", error));
+	// Animation duration
+	let duration = 3500;
 
+	// Fade out the previous quote 
+	fade(quoteBox, 1, 0, duration, time); 
+	// Wait for the fade out to take place and only then swap in the new quote
+	setTimeout(()=>{
+		console.log('quote replace at: ', Date.now() - time)
+		insertHTML();
+		// Fade in the new quote
+		fade(quoteBox, 0, 1, duration, time);
+	}, duration + 500);
+
+	// insertHTML replaces quoteBox's innerHTML with the innerHTML of the new quote
 	function insertHTML() {
-		// Note: Setting text content with innHTML is not recommended. It's preferable to get a reference to each paragraph or span and set its textContent
-		quoteBox.innerHTML = generateQuoteHTML();
+		// Insert the new quote
+		quoteBox.innerHTML = generatedQuote;
 	}	
 }
 
-// Add a click listener to the loadQuote button, and on click, call printQuote
-loadQuote.addEventListener("click", printQuote, false);
-
-// Add a listener to the document and load the first quote on load
-document.addEventListener("DOMContentLoaded", printQuote, false);
-
+// what's happening now is that :
+// click to button
+// current quote immediately dissappears
+// current quote then immediately begins to fade in
+// after set timeout new quote immediately appears
