@@ -16,4 +16,4 @@ Issues can logged here: https://github.com/julianjohannesen/quote-generator/issu
 
 ### KNOWN ISSUES
 
-Please note that this page will not display correctly in Microsoft Edge for PC. It relies on the Web Animation API, which is not completely supported there. The pollyfill has been added, which seems to help on Mac, but does not seem to be working correctly in Edge for the PC.
+Please note that this page will not display correctly in Microsoft Edge for PC. It relies on the Web Animation API, which is not completely supported in either Edge or Sarafri. The pollyfill has been added, which seems to help on Mac, but does not seem to be working correctly in Edge for PC.
