@@ -44,7 +44,6 @@ document.addEventListener("DOMContentLoaded", printQuote, false);
 // Add a click listener to the loadQuote button, and on click, call printQuote
 loadQuote.addEventListener("click", printQuote, false);
 
-
 // getRandomQuote generate a random number and returns the quote object at that index
 function getRandomQuote(){
 	// Generate a random number between 0 and 4, while ensuring that we don't repeat the same number twice in a row
@@ -73,6 +72,7 @@ function generateQuoteHTML(){
 
 // fade uses the web animation API to transition an element from a beginning opacity to an end opacity over a given length of time
 function fade(elem, begin, end, duration, time){
+	// For debugging
 	console.log('fade starts at: ', Date.now() - time, 'and the starting opacity is: ', begin)
 	elem.animate([
 		{opacity: begin},
@@ -82,9 +82,9 @@ function fade(elem, begin, end, duration, time){
 	});
 }
 
-
 // printQuote adds the generated html to the quote box, replacing its prev contents
 function printQuote(){
+	// This is here for debugging, but I'm leaving it in for the momenet
 	let time = Date.now()
 	console.log('button fires at: ', Date.now() - time)
 
